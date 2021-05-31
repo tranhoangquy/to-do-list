@@ -1,0 +1,1 @@
+export const columns = [{id:"td", name:"TO DO", task:[{id: 1, content: 'Demo task', time: '04/15/2019, 9:25:35 PM'}]},{id:"ip", name:"IN PROGRESS", task:[]},{id:"de", name:"DONE", task:[]}] 
