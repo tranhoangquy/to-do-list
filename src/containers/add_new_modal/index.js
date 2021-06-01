@@ -2,9 +2,9 @@ import { Button, Form, Input, Modal, Radio } from 'antd'
 import React, { useCallback, useState } from 'react'
 import { v4 as uuid } from 'uuid';
 import moment from "moment"
-import { columns } from '../../data';
+// import { columns } from '../../data';
 
-const AddModal = ({isModalAdd,setIsModalAdd,check_id}) => {
+const AddModal = ({isModalAdd,setIsModalAdd,check_id,columns}) => {
   const radios = [{id:"td",name:"TO DO"},{id:"ip",name:"IN PROGRESS"},{id:"de",name:"DONE"}]
   const [columns_id,setColumns_id] = useState("")
  
