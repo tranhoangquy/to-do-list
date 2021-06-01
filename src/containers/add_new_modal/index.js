@@ -4,11 +4,11 @@ import { v4 as uuid } from 'uuid';
 import moment from "moment"
 // import { columns } from '../../data';
 
-const AddModal = ({isModalAdd,setIsModalAdd,check_id,columns}) => {
+const AddModal = ({isModalAdd,setIsModalAdd,columns}) => {
   const radios = [{id:"td",name:"TO DO"},{id:"ip",name:"IN PROGRESS"},{id:"de",name:"DONE"}]
   const [columns_id,setColumns_id] = useState("")
  
-  // const form = Form.useForm()
+  const [form] = Form.useForm()
   const col = columns.find((col)=>col.id ===columns_id)
   
   const createTask = useCallback((value) =>{
@@ -18,18 +18,18 @@ const AddModal = ({isModalAdd,setIsModalAdd,check_id,columns}) => {
       time:moment().format("DD-MM-YYYY, LTS")
     }
   col?.task?.push(data)
+  form.resetFields()
   setIsModalAdd(false)
-  },[col?.task,setIsModalAdd])
+  },[col?.task,setIsModalAdd,form])
   return (
-    <Modal title="CREATE NEW TASK" visible={isModalAdd} onCancel={()=>setIsModalAdd(false)} width={430}  footer={null}>
-      <Form onFinish={createTask} >
+    <Modal title="CREATE NEW TASK" visible={isModalAdd} onCancel={()=>{setIsModalAdd(false);form.resetFields();}} width={430}  footer={null}>
+      <Form onFinish={createTask} form={form}>
         <Form.Item name="radio_title"> 
           <Radio.Group className="flex font-mono" >
           {
             radios.map((radio)=>
 
               <Radio className="text-lg" key={radio.id} value={radio.id} onChange={(e)=>setColumns_id(e?.target?.value)}>{radio.name}</Radio>
-              
             )
 
           }
